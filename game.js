@@ -8,7 +8,7 @@ let sprite = Sprite({
   color: "red",
   width: 20,
   height: 40,
-  dx: 2,
+  dx: 3,
 });
 
 let angel = Sprite({
@@ -17,17 +17,22 @@ let angel = Sprite({
   color: "white",
   width: 20,
   height: 40,
+  dx: 1,
 });
 
 let loop = GameLoop({
-  update: function () {
+  update: function() {
     sprite.update();
+    angel.update();
 
     if (sprite.x > canvas.width) {
       sprite.x = -sprite.width;
     }
+    if (angel.x > canvas.width) {
+      angel.x = -angel.width;
+    }
   },
-  render: function () {
+  render: function() {
     sprite.render();
     angel.render();
   },
