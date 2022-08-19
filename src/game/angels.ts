@@ -22,6 +22,7 @@ export function spawnAngel(gameState: GameState) {
 
 export function updateAngelState(gameState: GameState) {
   //TODO: make it a wave behavior
+  //maybe: the wave could be not just one angel but a couple
   gameState.framesSinceLastAngelSpawn++;
   spawnAngel(gameState);
 }

@@ -3,6 +3,9 @@ import { GameState } from "../model/GameState";
 import { TypedSprite, SpriteType } from "../model/TypedSprite";
 
 export function shootBullet(gameState: GameState, shootingRotation: number) {
+  //TODO: implement reloading timeout or something like an limited amunition system
+  //maybe: has 5 bullets and 1 new bullet every 2 seconds
+
   const cos = Math.cos(shootingRotation);
   const sin = Math.sin(shootingRotation);
   const bullet = new Bullet({
