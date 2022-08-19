@@ -60,6 +60,7 @@ function initGame() {
 const gameState = initGame();
 
 let loop = GameLoop({
+  //executed 60 times per second
   update: function () {
     console.log(gameState);
 

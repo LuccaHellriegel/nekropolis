@@ -1,10 +1,11 @@
+import { Bullet } from "../model/Bullet";
 import { GameState } from "../model/GameState";
 import { TypedSprite, SpriteType } from "../model/TypedSprite";
 
 export function shootBullet(gameState: GameState, shootingRotation: number) {
   const cos = Math.cos(shootingRotation);
   const sin = Math.sin(shootingRotation);
-  const bullet = new TypedSprite({
+  const bullet = new Bullet({
     x: 100,
     y: 80,
     color: "green",
@@ -12,7 +13,8 @@ export function shootBullet(gameState: GameState, shootingRotation: number) {
     width: 10,
     height: 10,
     render() {
-      //this render function is inserted into the TypedSprite, but the typing is not understanding that "this" is the TypeSprite
+      //this render function is inserted into the TypedSprite, but the typing is not understanding that "this" is the TypedSprite
+      //so we need to "as" it
       const context = (this as TypedSprite).context;
       context.beginPath(); // start drawing a shape
       context.arc(0, 0, this.radius, 0, Math.PI * 2);
