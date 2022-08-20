@@ -1,4 +1,3 @@
-import { Bullet } from "../model/Bullet";
 import { GameState } from "../model/GameState";
 import { TypedSprite, SpriteType } from "../model/TypedSprite";
 
@@ -8,7 +7,7 @@ export function shootBullet(gameState: GameState, shootingRotation: number) {
 
   const cos = Math.cos(shootingRotation);
   const sin = Math.sin(shootingRotation);
-  const bullet = new Bullet({
+  const bullet = new TypedSprite({
     x: 100,
     y: 80,
     color: "green",

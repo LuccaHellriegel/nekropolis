@@ -1,4 +1,3 @@
-import { Bullet } from "../model/Bullet";
 import { Circle } from "../model/Cricle";
 import { GameState } from "../model/GameState";
 import { Rectangle } from "../model/Rectangle";
@@ -17,7 +16,8 @@ export function searchCollisions(gameState: GameState) {
         sprite.type === SpriteType.ANGEL &&
         sprite2.type === SpriteType.BULLET
       ) {
-        const isACollision = isCollision(sprite2 as Bullet, sprite);
+        //for some reason the Sprite-class does not have "radius", so we need to force conversion
+        const isACollision = isCollision(sprite2 as unknown as Circle, sprite);
         if (isACollision) {
           //TODO: do something, kill angel
           console.log("Found collision: ", sprite2, sprite);
