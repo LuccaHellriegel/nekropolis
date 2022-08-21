@@ -11,26 +11,22 @@ export function isCollision(circle: Circle, rectangle: Rectangle): boolean {
       && Math.abs(rectangle.y - circleRadiusY) <= rectangle.height;
 }
 
-function killAngel(angel: TypedSprite, gameState: GameState) {
-  gameState.sprites = gameState.sprites.filter(newSprite => newSprite !== angel);
-}
-
-function killBullet(bullet: TypedSprite, gameState: GameState) {
-  gameState.sprites = gameState.sprites.filter(newSprite => newSprite !== bullet);
+function removeSprite(spriteToRemove: TypedSprite, gameState: GameState) {
+  gameState.sprites = gameState.sprites.filter(newSprite => newSprite !== spriteToRemove);
 }
 
 export function searchCollisions(gameState: GameState) {
-  for (let sprite of gameState.sprites) {
-    for (let sprite2 of gameState.sprites) {
+  for (let spriteAngel of gameState.sprites) {
+    for (let spriteBullet of gameState.sprites) {
       if (
-        sprite.type === SpriteType.ANGEL &&
-        sprite2.type === SpriteType.BULLET
+          spriteAngel.type === SpriteType.ANGEL &&
+        spriteBullet.type === SpriteType.BULLET
       ) {
         //for some reason the Sprite-class does not have "radius", so we need to force conversion
-        const isACollision = isCollision(sprite2 as unknown as Circle, sprite);
+        const isACollision = isCollision(spriteBullet as unknown as Circle, spriteAngel);
         if (isACollision) {
-          killAngel(sprite, gameState);
-          killBullet(sprite2, gameState);
+          removeSprite(spriteAngel, gameState);
+          removeSprite(spriteBullet, gameState);
         }
       }
     }
